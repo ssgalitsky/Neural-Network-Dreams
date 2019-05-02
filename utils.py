@@ -65,7 +65,8 @@ def get_frames_from_youtube_video(video_url: str,
 
     output_video_file_path = tempfile.NamedTemporaryFile().name
 
-    youtube_downloader_params = {"quiet": False, "outtmpl": output_video_file_path, "format": "best[height<=240]"}
+    #youtube_downloader_params = {"quiet": False, "outtmpl": output_video_file_path, "format": "best[height<=240]"}
+    youtube_downloader_params = {"quiet": False, "outtmpl": output_video_file_path, "format": "37/22/18/best"}
     with youtube_dl.YoutubeDL(params=youtube_downloader_params) as ydl:
         ydl.download([video_url])
 
@@ -93,11 +94,9 @@ def get_frames_from_youtube_video(video_url: str,
 
 def convert_video_to_gif(input_video_path, output_gif_path, fps=24):
     palette_image_path = "palette.png"
-    command_palette = 'ffmpeg -y -t 0 -i {0} -vf fps={1},scale=320:-1:flags=lanczos,palettegen {2}'.format(input_video_path,
-                                                                                                           fps,
-                                                                                                           palette_image_path)
+    command_palette = 'ffmpeg -y -t 0 -i {0} -vf fps={1},scale=320:-1:flags=lanczos,palettegen {2}'.format(input_video_path,fps, palette_image_path)
     command_convert = 'ffmpeg -y -t 0 -i {0} -i {1} -filter_complex "fps={2},scale=320:-1:flags=lanczos[x];[x][1:v]paletteuse" {3}'.format(input_video_path,palette_image_path, fps, output_gif_path)
-    
+    print(command_palette,command_convert)    
     try:
         subprocess.check_call(command_palette)
         subprocess.check_call(command_convert)
