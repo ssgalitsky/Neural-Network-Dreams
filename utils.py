@@ -92,7 +92,7 @@ def get_frames_from_youtube_video(video_url: str,
 
 
 def convert_video_to_gif(input_video_path, output_gif_path, fps=24):
-    #palette_image_path = "palette.png"
+    palette_image_path = "palette.png"
     command_palette = 'ffmpeg -y -t 0 -i {0} -vf fps={1},scale=320:-1:flags=lanczos,palettegen {2}'.format(input_video_path,
                                                                                                            fps,
                                                                                                            palette_image_path)
