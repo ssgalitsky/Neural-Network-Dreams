@@ -60,7 +60,7 @@ def decoded_frame_postprocessor(frame: np.ndarray) -> np.ndarray:
 
 
 def get_frames_from_youtube_video(video_url: str,
-                                  frame_preprocessor: Callable[[np.ndarray], np.ndarray] = None,formats) -> np.ndarray:
+                                  frame_preprocessor: Callable[[np.ndarray], np.ndarray] = None,formats="best") -> np.ndarray:
     # Downloading the video
 
     output_video_file_path = tempfile.NamedTemporaryFile().name
