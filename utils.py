@@ -66,7 +66,7 @@ def get_frames_from_youtube_video(video_url: str,
     output_video_file_path = tempfile.NamedTemporaryFile().name
 
     #youtube_downloader_params = {"quiet": False, "outtmpl": output_video_file_path, "format": "best[height<=240]"}
-    youtube_downloader_params = {"quiet": False, "outtmpl": output_video_file_path, "format": "best"}
+    youtube_downloader_params = {"quiet": False, "outtmpl": output_video_file_path, "format": "best-audio"}
     with youtube_dl.YoutubeDL(params=youtube_downloader_params) as ydl:
         ydl.download([video_url])
 
